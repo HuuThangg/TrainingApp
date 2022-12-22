@@ -5,18 +5,10 @@
 import {AppRegistry} from 'react-native'
 import React from 'react';
 import {name as appName} from './app.json'
-import Welcome from './screens/Welcome'
+import {Welcome,Login,FoodList} from './screens/index'
+import {Thongtinbhyt,Sothebhyt} from './bhyt'
 
-let fakedProducts =[
-    {productName:'iphone 6',
-year:2015},
-{productName:'iphone 7',
-year:2016},
-{productName:'iphone 8',
-year:2017},
-{productName:'iphone 9',
-year:2018}
-]
+
 /*
 AppRegistry.registerComponent(appName,
     () => ()=> <WellcomeScreen 
@@ -29,4 +21,5 @@ AppRegistry.registerComponent(appName,
             product = {fakedProducts}
             />)
 */
-AppRegistry.registerComponent(appName,()=>()=> <Welcome/>)
+//AppRegistry.registerComponent(appName,()=>()=> <Welcome/>)
+AppRegistry.registerComponent(appName,()=> ()=> <FoodList/>)

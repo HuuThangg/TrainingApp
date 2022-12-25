@@ -11,21 +11,31 @@ import {
 } from 'react-native'
 import { images, icons, colors, fontSizes } from '../../constants/index'
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { createIconSetFromFontello } from 'react-native-vector-icons';
 
-function _getColorFromStatus(status){
-    if(status.toLowerCase().trim() == 'Opening soon'){
+function _getColorFromStatus(status){  
+    if(status == 'Opening soon'){
         return colors.success
-    }else if(status.toLowerCase().trim() == 'Closing soon'){
+    }else if(status == 'Closing soon'){
         return colors.alter
-    }else if(status.toLowerCase().trim() == 'Comming soon'){
+    }else if(status == 'Comming soon'){
         return colors.waring
     }
-    return colors.success
+    return colors.success 
+//    return status.toLowerCase().trim() == 'Opening soon' ? colors.alter :
+//    (status.toLowerCase().trim() == 'Closing soon' ? colors.alter :
+//    (status.toLowerCase().trim() == 'Comming soon' ? colors.waring : colors.success))
+//    return colors.alter
 }
 function FoodItem(props){
-    let{name,price,socialNetworks,status,url,website}=props.food
-    return <View style={{
+    let{name,
+        price,
+        socialNetworks,
+        status,
+        url,
+        website}=props.food
+        const {onPress}=props
+    return <TouchableOpacity
+            onPress={onPress} style={{
         height: 150,
         paddingTop: 20,
         paddingStart: 10,
@@ -73,16 +83,20 @@ function FoodItem(props){
                     fontSize: fontSizes.h6,
                 }}>Website:{website} </Text>
                 <View style={{flexDirection:'row'}}>
-                <Icon style={{paddingEnd:5}}
-                name='facebook' size={18} color={"black"}/>
-                <Icon style={{paddingEnd:5}}
-                name='twitter' size={18} color={"black"}/>
-                <Icon style={{paddingEnd:5}}
-                name='instagram' size={18} color={"black"}/>
+                {socialNetworks['facebook'] != undefined && <Icon 
+                style={{paddingEnd:5}}
+                name='facebook' size={18} color={"black"}/>}
+                {socialNetworks['twitter'] != undefined && <Icon 
+                style={{paddingEnd:5}}
+                name='twitter' size={18} color={"black"}/>}
+                {socialNetworks['instagram'] != undefined && <Icon 
+                style={{paddingEnd:5}}
+                name='instagram' size={18} color={"black"}/>}
                 </View>
             </View>
         </View>
-    </View>
+
+    </TouchableOpacity>
 }
 
 export default FoodItem

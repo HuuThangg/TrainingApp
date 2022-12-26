@@ -5,7 +5,7 @@
 import {AppRegistry} from 'react-native'
 import React from 'react';
 import {name as appName} from './app.json'
-import {Welcome,Login,FoodList} from './screens/index'
+import {Welcome,Login,FoodList,ProductGridView} from './screens/index'
 import {Thongtinbhyt,Sothebhyt} from './bhyt'
 
 
@@ -22,4 +22,4 @@ AppRegistry.registerComponent(appName,
             />)
 */
 //AppRegistry.registerComponent(appName,()=>()=> <Welcome/>)
-AppRegistry.registerComponent(appName,()=> ()=> <FoodList/>)
+AppRegistry.registerComponent(appName,()=> ()=> <ProductGridView/>)

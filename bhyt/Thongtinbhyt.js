@@ -1,9 +1,31 @@
-import React from 'react';
-import { View, Text, ScrollView, ImageBackground, Image, FlatList } from 'react-native'
+import React,{useState} from 'react';
+import { View, Text, SafeAreaView, ImageBackground, Image, FlatList,tbody } from 'react-native'
 import { images, icons } from '../constants';
 import Icon from 'react-native-vector-icons/FontAwesome5'
-
+import {Table,Row} from 'react-native-table-component'
+const headers = ['ngayvao','ngayra','tenbenh']
 function Thongtinbhyt(props) {
+    
+    const [lichsu,setLichsu]=useState(
+        [
+            {
+                ngayvao:'20/12/2022',
+                ngayra:'20/12/2022',
+                tenbenh:'Cam thuong',
+            },
+            {
+                ngayvao:'21/12/2022',
+                ngayra:'21/12/2022',
+                tenbenh:'benh tang huyet ap',
+            },
+            {
+                ngayvao:'22/12/2022',
+                ngayra:'22/12/2022',
+                tenbenh:'dau rang',
+            }
+        ]
+    )
+
     return <View style={{
         backgroundColor: 'white',
         flex: 100
@@ -118,15 +140,21 @@ function Thongtinbhyt(props) {
                      color:'#1e90ff',
                      fontSize:20,
                 }}></Image> */}
-                <View>
-
-                </View>
+                <SafeAreaView style={{flex:1}}>
+                    <View style={{flex:1,padding:10}}>
+                        <Table >
+                            <Row>
+                                data={headers}
+                            </Row>
+                        </Table>
+                    </View>
+                </SafeAreaView>
             </View>
 
             <View style={{
                 flex: 10,
             }}>
-               
+
             </View>
         </ImageBackground>
     </View>

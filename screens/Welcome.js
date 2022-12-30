@@ -21,6 +21,9 @@ function Welcome(props) {
             isSelected: false,
         }
     ])
+    //navigation
+    const{navigation,route}=props
+    const{navigate,goBack}=navigation
     return <View style={{
         backgroundColor: 'white',
         flex: 100
@@ -87,7 +90,9 @@ function Welcome(props) {
                 flex: 40
             }}>
                 {accountTypes.map(accountType =>
-                    <UIButton onPress={() => {
+                    <UIButton 
+                    key={accountType.name}
+                    onPress={() => {
                         let newAccountTypes = accountTypes.map(eachAccountType=>{
                             return {
                                 ...eachAccountType,
@@ -106,7 +111,11 @@ function Welcome(props) {
                 flex: 20,
                 
             }}>
-                <UIButton title={'Login'.toUpperCase()}/>
+                <UIButton 
+                onPress={()=>{
+                    navigate('Login')
+                }}
+                title={'Login'.toUpperCase()}/>
                 <Text style={{
                     color: 'white',
                     fontSize: fontSizes.h4,

@@ -16,8 +16,8 @@ import { isValidEmail, isValidPassword } from '../utilites/validation'
 
 function Login(props) {
     const [keyboardDidShow, setkeyboardDidShow] = useState(false)
-    const [errorEmail, setErrorEmail] = useState('')
-    const [errorPassword, setErrorPassword] = useState('')
+    const [errorEmail, setErrorEmail] = useState('abc@gmail.com')
+    const [errorPassword, setErrorPassword] = useState('123456')
     //luu tru email/password
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -29,6 +29,10 @@ function Login(props) {
             setkeyboardDidShow(false)
         })
     })
+
+        //navigation
+        const{navigation,route}=props
+        const{navigate,goBack}=navigation
     return <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{
@@ -78,6 +82,7 @@ function Login(props) {
                         color: 'black'
                     }}
                     placeholder='example.@gmail.com'
+                    value={email}
                     placeholderTextColor={colors.placeholder} />
                 <View style={{
                     height: 1,
@@ -109,6 +114,7 @@ function Login(props) {
                     }}
                     secureTextEntry={true}
                     placeholder='Enter your password'
+                    value={password}
                     placeholderTextColor={colors.placeholder} />
                 <View style={{
                     height: 1,
@@ -130,6 +136,7 @@ function Login(props) {
         }}>
             <TouchableOpacity
                 onPress={() => {
+                    navigate('UITab')
                 }}
                 style={{
                     backgroundColor: colors.primary,

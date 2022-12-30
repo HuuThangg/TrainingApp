@@ -60,7 +60,7 @@ function GridItem(props) {
         {
             item.specifications.map(specification =>
                 <Text
-                    //key={specification} 
+                    key={specification} 
                     style={{
                         color: 'black',
                         fontSize: fontSizes.h6,
@@ -71,7 +71,7 @@ function GridItem(props) {
         }
         <View style={{ flexDirection: 'row', padding: 5 }}>
             <TouchableOpacity
-                onPress={onPress}
+                onPress={onPress} 
                 style={{ flexDirection: 'row' }}>
                 <Icon name='heart'
                     style={{ marginEnd: 5 }}

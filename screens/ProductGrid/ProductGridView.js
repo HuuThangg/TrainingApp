@@ -1,191 +1,174 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
-    Text,
-    View,
+    Text, 
+    View, 
     FlatList,
+    SafeAreaView
 } from 'react-native'
-import { images, icons, colors, fontSizes } from '../../constants/index'
-import Icon from 'react-native-vector-icons/FontAwesome5'
+//import { SafeAreaView } from 'react-native-safe-area-context';
 import GridItem from './GridItem';
-
 function ProductGridView(props) {
     const [products, setProducts] = useState([
         {
-            url: 'https://cdn2.cellphones.com.vn/358x358,webp,q100/media/catalog/product/s/m/sm-s908_galaxys22ultra_front_green_211119.jpg',
-            price: 75,
-            productName: 'SamSung',
+            productName: 'Samsung SC 5573',
+            url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ_RmmJwasIPHbPZ64WpqRYGw-oNHxhL_k7_wdwronrgS_kSy2eDjv1llYolxWb_NqTOI&usqp=CAU',
+            price: 75,            
             specifications: [
-                'Tot',
-                'mau ma dep',
-                'pin tot',
+                'Dry clean', 
+                'cyclone filter',
+                'convenience cord storage'
             ],
             reviews: 19,
-            starts: 5,
+            stars: 5,            
         },
         {
-            url: 'https://cdn1.viettelstore.vn/images/Product/ProductImage/medium/325815861.jpeg',
-            price: 75,
-            productName: 'Iphone 14',
+            productName: 'AirRam Cordless Stick Vacuum Cleaner',
+            url: 'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1629751832-GUEST_48042c13-4bd6-4867-abe0-879066c14938.jpg?crop=1xw:1.00xh;center,top&resize=768:*',
+            price: 88,            
             specifications: [
-                'Tot',
-                'mau ma dep',
-                'pin tot',
+                'Slim design', 
+                'Easy to maneuver',
+                'Stands upright for storage'
             ],
-            reviews: 35,
-            starts: 2,
+            reviews: 120,
+            stars: 4,
         },
         {
-            url: 'https://cdn.tgdd.vn/Products/Images/42/240194/nokia-105-4g-blue-600x600.jpg',
-            price: 750,
-            productName: 'Nokia',
+            productName: 'Complete C3 Vacuum for Soft Carpet',
+            url: 'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1628695630-miele-complete-c3-vacuum-for-soft-carpet-1628695621.jpg?crop=1xw:1xh;center,top&resize=768:*',
+            price: 98,            
             specifications: [
-                'Tot',
-                'mau ma dep',
-                'pin tot',
+                'Complete C3 Vacuum for', 
+                'Excellent filtration',                
             ],
-            reviews: 19,
-            starts: 1,
+            reviews: 146,
+            stars: 3,
         },
         {
-            url: 'https://didongviet.vn/pub/media/catalog/product//o/p/oppo-reno-6-didongviet-thumb2.jpg',
-            price: 430,
-            productName: 'Oppo',
+            productName: '1800W Ease C4 bagless canister vacuum cleaner',
+            url: 'https://www.electrolux.vn/globalassets/vn-product-images/vacuum-cleaner/ec31-2bb-1500x1500-min.png?preset=medium',
+            price: 993.3,            
             specifications: [
-                'Tot',
-                'mau ma dep',
-                'pin tot',
+                'Solid construction', 
+                'Excellent filtration',
+                'Works on all carpet heights and densities',
+                'Heavy'
             ],
-            reviews: 19,
-            starts: 5,
+            reviews: 546,
+            stars: 1,
         },
         {
-            url: 'https://cdn.tgdd.vn/Products/Images/42/213031/s16/iphone-12-red-3-650x650.png',
-            price: 500,
-            productName: 'Iphone 12',
+            productName: 'Roomba s9+ Robot Vacuum',
+            url: 'https://www.electrolux.vn/remote.jpg.ashx?urlb64=aHR0cHM6Ly93d3cuZWxlY3Ryb2x1eC5pbS9wcm9kdWN0cy9YTUxMQVJHRVJJTUFHRS9aOTMxLTcwMC5wbmc&hmac=4jenSHJSWAc&preset=medium',
+            price: 1099,            
             specifications: [
-                '123',
-                '222',
-                '444',
+                'Fully featured robot vacuum', 
+                "Doesn't clog with pet hair",
+                "Automatically empties dirt into its bin"
             ],
-            reviews: 400,
-            starts: 5,
+            reviews: 66,
+            stars: 5,
         },
         {
-            url: 'https://duongphi.com/wp-content/uploads/2020/10/2021_12_04_17_09_IMG_7352.png',
-            price: 100,
-            productName: 'Iphone 11',
+            productName: '20V Cordless Cube Compact Vacuum Cleaner',
+            url: 'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1621533694-410taraVerL._SL500_.jpg?crop=1xw:1.00xh;center,top&resize=768:*',
+            price: 88,            
             specifications: [
-                '333',
+                'Rinsable HEPA filter', 
+                'Three-year warranty',                
             ],
-            reviews: 500,
-            starts: 4,
+            reviews: 698,
+            stars: 3,
         },
         {
-            url: 'https://iphonebinhphuoc.vn/wp-content/uploads/2021/01/iphone-12-finish-select-202207-blue.jpeg',
-            price: 660,
-            productName: 'Iphone 13 Pro',
+            productName: 'S7 Robot Vacuum and Mop Cleaner',
+            url: 'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1629754591-414prpgboLL._SL500_.jpg?crop=1xw:0.972xh;center,top&resize=768:*',
+            price: 659.33,            
             specifications: [
-                '555',
-                '22',
+                'Vacuums and mops in a single session', 
+                'Comes in white and black',
+                'App is easy to download and use',
+                'Works by voice commands',
             ],
-            reviews: 860,
-            starts: 5,
+            reviews: 223,
+            stars: 1,
         },
         {
-            url: 'https://24hshop.vn/wp-content/uploads/2022/09/samsung-a53.png',
-            price: 550,
-            productName: 'SumSung 1',
+            productName: 'V15 Detect Cordless Vacuum',
+            url: 'https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1635541875-31B4xOxdtNS._SL500_.jpg?crop=1xw:1.00xh;center,top&resize=768:*',
+            price: 188,            
             specifications: [
-                '3454363',
+                'Automatically adjusts speed and suction', 
+                'Laser spotter makes it easier to see dust on bare floors',                
             ],
-            reviews: 400,
-            starts: 5,
+            reviews: 325,
+            stars: 3,
         },
         {
-            url: 'https://image-us.24h.com.vn/upload/3-2022/images/2022-07-21/1-1658388060-309-width740height555.jpg',
-            price: 80,
-            productName: 'SumSung 2',
+            productName: 'Pure C9 bagless vacuum cleaner',
+            url: 'https://www.electrolux.vn/globalassets/d2c-vn/vacuum-cleaners/vn-pc91-5ibm-1500x1500-min.png?preset=small',
+            price: 112,            
             specifications: [
-                '35345',
-                '345345',
-                '345345',
+                'Cash on delivery accepted', 
+                ' Free installation',
+                ' 2 years warranty'
             ],
-            reviews: 80,
-            starts: 3,
+            reviews: 232,
+            stars: 2,
         },
         {
-            url: 'https://cdn1.viettelstore.vn/images/Product/ProductImage/medium/1799791919.jpeg',
-            price: 95,
-            productName: 'SumSung 3',
+            productName: '25V ErgoRapido bagless handstick vacuum cleaner',
+            url: 'https://www.electrolux.vn/globalassets/d2c-vn/vacuum-cleaners/vn-zb3314ak-1500x1500-min.png?preset=medium',
+            price: 188,            
             specifications: [
-                '234232',
-                '2432342',
-                '2342342',
+                'BrushRollClean means no more manual cleaning', 
+                '45 minutes* run-time for quick or deep cleaning',
+                '2-in-1 handheld for cleaning hard-to-reach areas'
             ],
-            reviews: 50,
-            starts: 3,
+            reviews: 321,
+            stars: 3,
         },
         {
-            url: 'https://cdn.tgdd.vn/Products/Images/42/213031/s16/iphone-12-red-3-650x650.png',
-            price: 500,
-            productName: 'Ihone x',
+            productName: '2000W Ease C4 bagless canister vacuum cleaner',
+            url: 'https://www.electrolux.vn/globalassets/vn-product-images/vacuum-cleaner/ec41-6cr-1500x1500-min.png?preset=medium',            
             specifications: [
-                '234234324',
-                '242342',
-                '2423432',
+                'Large rotary wheels for increased stability.', 
+                'High-capacity 1.8 liter dust canister.',
+                'Designed for easy emptying with single button release'
             ],
-            reviews: 90,
-            starts: 4,
-        },
-        {
-            url: 'https://cdn.tgdd.vn/Products/Images/42/213031/s16/iphone-12-red-3-650x650.png',
-            price: 430,
-            productName: 'Phone 13',
-            specifications: [
-                '2353252',
-                '235235',
-            ],
-            reviews: 200,
-            starts: 5,
-        },
-        {
-            url: 'https://didongviet.vn/pub/media/catalog/product//o/p/oppo-reno-6-didongviet-thumb2.jpg',
-            price: 105,
-            productName: 'Oppo 1',
-            specifications: [
-                '35345345',
-                '345345',
-                '34534534',
-            ],
-            reviews: 9,
-            starts: 1,
-        },
+            price: 253.35,            
+            reviews: 12,
+            stars: 1,
+        }
     ])
-    return <View style={{
+    return <SafeAreaView style={{
         flex: 1,
+        backgroundColor: 'white'
     }}>
-        <FlatList
-            style={{ marginTop: 5 }}
+        <FlatList 
+            style={{marginTop: 5}}        
             data={products}
             numColumns={2}
             keyExtractor={item => item.productName}
-            renderItem={({ item, index }) =><GridItem item={item} index={index}
-            onPress={()=>{
-                let cloneProducts = products.map(eachProduct => {
-                    if (item.productName == eachProduct.productName) { //kiểm tra phần tư ban đầu = phần tử bấm vào
-                        //  return {...eachProduct,isSaved:true} //nhân bảng và thêm issaved bằng true
-                        return {
-                            ...eachProduct,
-                            isSaved: eachProduct.isSaved == false
-                                || eachProduct.isSaved == undefined ? true : false
+            renderItem={({item, index}) => <GridItem 
+                item={item} index={index}
+                onPress={() => {
+                    let clonedProducts = products.map(eachProduct => {
+                        if (item.productName == eachProduct.productName) {
+                            //return {...eachProduct, isSaved: true}
+                            return {
+                                ...eachProduct,
+                                isSaved: eachProduct.isSaved == false
+                                    || eachProduct.isSaved == undefined
+                                    ? true : false
+                            }
                         }
-                    }
-                    return eachProduct
-                })
-                setProducts(cloneProducts) //cập nhật lại 
-            }}/> }
-        />
-    </View>
+                        return eachProduct
+                    })
+                    setProducts(clonedProducts)   
+                }}
+                />}
+            />
+    </SafeAreaView>
 }
-
 export default ProductGridView

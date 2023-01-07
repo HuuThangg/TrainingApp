@@ -11,11 +11,22 @@ import {
     ScrollView,
     Switch,
 } from 'react-native'
-import { images, icons, colors, fontSizes } from '../constants/index'
-import { UIButton, UIHeader } from '../components/index'
+import { images, icons, colors, fontSizes } from '../../constants/index'
+import { UIButton, UIHeader } from '../../components/index'
 import Icon from 'react-native-vector-icons/FontAwesome5'
-import { isValidEmail, isValidPassword } from '../utilites/validation'
+import SettingItem from './SettingItem';
+const [ungdung, setUngDung] = useState([
+    {
+        title: "Mật khẩu và bảo mật",
+        iconleft: "check",
+        conright: "chevron-right"
+    }
+])
 function Setting(props) {
+    //const{navigation,route}=props
+    //const{navigate,goBack}=navigation
+    const { onPress } = props
+    /*
     const [isEnabledLockApp,setisEnabledLockApp]=useState(true)
     const [isUseFingerprint,setisUseFingerprint]=useState(false)
     const [isEnabledChangePassword,setisEnabledChangePassword]=useState(true)
@@ -304,6 +315,92 @@ function Setting(props) {
                     color={'black'} />
             </View>
            
+        </ScrollView>
+    </View>
+    */
+    return <View style={{
+        flex: 1,
+    }}>
+        <View style={{
+            height: 100,
+            backgroundColor: colors.primary
+        }}>
+            <View style={{
+                flexDirection: 'row',
+                marginHorizontal: 20,
+            }}>
+                <Icon name='user-circle' style={{
+                    fontSize: 70,
+                    marginTop: 10,
+                    color: 'white'
+                }}></Icon>
+                <View style={{
+                    marginHorizontal: 20,
+                    marginTop: 20
+                }}>
+                    <Text style={{
+                        color: 'white',
+                        fontSize: fontSizes.h4,
+                        fontWeight: 'bold'
+                    }}>Le Huu Thang</Text>
+                    <Text style={{
+                        color: 'white',
+                        fontSize: fontSizes.h4
+                    }}>0378483232</Text>
+                </View>
+            </View>
+        </View>
+        <ScrollView>
+            <View style={{
+                marginTop: 5
+            }}>
+                <TouchableOpacity onPress={() => {
+                    alert('abc')
+                    //navigate('MatKhauBaoMat')
+                }}>
+
+                    <View style={{
+                        flexDirection: 'row',
+                        paddingVertical: 10,
+                        paddingStart: 15
+                    }}>
+                        <Icon name='star-half-alt'
+                            style={{ marginStart: 5 }}
+                            size={20}
+                            color={'orange'} />
+                        <Text style={{
+                            color: 'black',
+                            fontSize: fontSizes.h3,
+                            paddingStart: 15,
+                        }}>{title}</Text>
+                        <View style={{ flex: 1 }} />
+                        <Icon name='chevron-right'
+                            style={{ paddingEnd: 5 }}
+                            size={22}
+                            color={'rgba(0,0,0,0.4)'}
+                        />
+                    </View>
+                    <View style={{ flex: 1, height: 0.6, backgroundColor: 'black', width: '100%', opacity: 0.3, marginTop: 8 }} />
+                </TouchableOpacity>
+                <SettingItem title={"Danh sách quan tâm"} iconleft={"star-half-alt"} iconright={"chevron-right"} />
+                <SettingItem title={"Mật khẩu và bảo mật"} iconleft={"check"} iconright={"chevron-right"} />
+                <SettingItem title={"Địa chỉ đã lưu"} iconleft={"map-marker-alt"} iconright={"chevron-right"} />
+                <SettingItem title={"Đơn hàng"} iconleft={"car"} iconright={"chevron-right"} />
+                <SettingItem title={"Tham gia cộng đồng"} iconleft={"users"} iconright={"chevron-right"} />
+                <SettingItem title={"Điều khoản và quy định"} iconleft={"readme"} iconright={"chevron-right"} />
+                <SettingItem title={"Những câu hỏi thường gặp"} iconleft={"question"} iconright={"chevron-right"} />
+                <SettingItem title={"Quy trình đặt lịch và khám bệnh"} iconleft={"exclamation"} iconright={"chevron-right"} />
+                <SettingItem title={"Chia sẻ ứng dụng"} iconleft={"share"} />
+                <SettingItem title={"Hotline 1900 2855"} iconleft={"headset"} />
+                <SettingItem title={"Đăng xuất"} iconleft={"sign-out-alt"} />
+                {/* <FlatList
+                data={ungdung}
+                renderItem={({ item }) => <SettingItem
+                    onPress={onPress}
+                    sett={item} key={item.title} />}
+                keyExtractor={echachSetting => echachSetting.title}
+            /> */}
+            </View>
         </ScrollView>
     </View>
 }

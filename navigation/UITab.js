@@ -9,7 +9,8 @@ import * as React from 'react'
 import {Setting,
     ProductGridView,
     FoodList,
-    Profile} from '../screens'
+    Profile,
+    Chat} from '../screens'
 import{createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import{fontSizes,colors} from '../constants'
 import Icon from 'react-native-vector-icons/FontAwesome5'
@@ -37,7 +38,8 @@ const screenOptions =({route})=>({
         return <Icon name={route.name == "ProductGridView" ? "align-center" :
             (route.name == "FoodList" ? "accusoft" : (
                 route.name == "Setting" ? "cogs" : 
-                (route.name=="Profile" ? "user": "")))}
+                (route.name=="Profile" ? "user":
+                (route.name=="Chat" ? "comment-dots":""))))}
             size={25}
             color={focused ? 'white' : colors.facebook}></Icon>
     },
@@ -50,6 +52,13 @@ function UITab(props){
         component={ProductGridView}
         options={{
             tabBarLabel:'Products'
+        }}
+        />
+         <Tab.Screen 
+        name={"Chat"} 
+        component={Chat}
+        options={{
+            tabBarLabel:'Chat'
         }}
         />
         <Tab.Screen 

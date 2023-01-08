@@ -14,11 +14,7 @@ function SettingItem (props){
     //const{navigation,route}=props
     //const{navigate,goBack}=navigation
     const {title,iconright,iconleft}=props
-    return <TouchableOpacity onPress={() => {
-        alert(`${title}`)
-       //navigate('MatKhauBaoMat')
-    }}>
-        
+    return <View>
     <View style={{
         flexDirection: 'row',
         paddingVertical:10,
@@ -30,7 +26,7 @@ function SettingItem (props){
             color={'orange'} />
         <Text style={{
             color: 'black',
-            fontSize: fontSizes.h3,
+            fontSize: fontSizes.h4,
             paddingStart:15,
         }}>{title}</Text>
          <View style={{flex:1}}/>
@@ -41,7 +37,7 @@ function SettingItem (props){
          />   
     </View>
     <View style={{flex:1,height:0.6, backgroundColor:'black',width:'100%', opacity:0.3,marginTop:8}}/>
-    </TouchableOpacity>
+   </View>
 }
 
 export default SettingItem

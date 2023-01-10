@@ -7,6 +7,7 @@ import Profile from "./Profile";
 import Chat from "./Chat/Chat";
 import Messenger from "./Messenger/Messenger";
 import MatKhauBaoMat from "./Settings/MatKhauBaoMat";
+import Register from "./Register";
 export{
     Welcome,
     Login,
@@ -16,5 +17,6 @@ export{
     Profile,
     Chat,
     Messenger,
-    MatKhauBaoMat
+    MatKhauBaoMat,
+    Register
 }

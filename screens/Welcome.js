@@ -123,7 +123,8 @@ function Welcome(props) {
                 }}>Want to register new account ?</Text>
                 <TouchableOpacity 
                 onPress={()=>{
-                    alert('Hello press')
+                    //alert('Hello press')
+                    navigate('Register',{name:"Register"})
                 }}
                 style={{
                     padding:5,

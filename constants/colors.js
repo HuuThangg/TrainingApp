@@ -7,5 +7,6 @@ export default{
     success:'rgb(7,161,79)',
     alter:'rgb(236,69,90)',
     messenger:'rgba(7,161,79,0.05)',
+    inactive:'rgba(0,0,0,0.5)',
 
 }

@@ -16,11 +16,14 @@ import { isValidEmail, isValidPassword } from '../utilites/validation'
 
 function Login(props) {
     const [keyboardDidShow, setkeyboardDidShow] = useState(false)
-    const [errorEmail, setErrorEmail] = useState('abc@gmail.com')
-    const [errorPassword, setErrorPassword] = useState('123456')
+    const [errorEmail, setErrorEmail] = useState('')
+    const [errorPassword, setErrorPassword] = useState('')
     //luu tru email/password
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const isValidationOK = () => email.length > 0 && password.length >0
+                                && isValidEmail(email) == true
+                                && isValidPassword(password) == true
     useEffect(() => {
         Keyboard.addListener('keyboardDidShow', () => {
             setkeyboardDidShow(true)
@@ -135,11 +138,14 @@ function Login(props) {
             flex: 15
         }}>
             <TouchableOpacity
+                disabled = {isValidationOK() == false}
                 onPress={() => {
-                    navigate('UITab')
+                    //navigate('UITab')
+                    alert(`Email = ${email},password=${password}`)
                 }}
                 style={{
-                    backgroundColor: colors.primary,
+                    backgroundColor: isValidationOK() == true
+                                ? colors.primary : colors.inactive,
                     justifyContent: 'center',
                     alignItems: 'center',
                     width: '50%',

@@ -16,7 +16,7 @@ import {createNavigationContainerRef, NavigationContainer} from '@react-navigati
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import{StackRouter} from 'react-navigation'
 import {Welcome,Login,Messenger,Register} from '../screens'
-import MatKhauBaoMat from '../screens/Settings/MatKhauBaoMat'
+import {CapNhatThongTin,MatKhauBaoMat} from '../screens/Settings'
 import UITab from '../navigation/UITab';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -33,6 +33,7 @@ function App(props){
             <Stack.Screen name={"UITab"} component={UITab}/>
             <Stack.Screen name={"Messenger"} component={Messenger}/>
             <Stack.Screen name={"MatKhauBaoMat"} component={MatKhauBaoMat}/>
+            <Stack.Screen name={"CapNhatThongTin"} component={CapNhatThongTin}/>
         </Stack.Navigator>
     </NavigationContainer>
 }

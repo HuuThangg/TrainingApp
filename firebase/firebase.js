@@ -1,10 +1,19 @@
-import * as firebase from 'firebase'
-import {inittializeApp} from 'firebase/app'
-import {getDatabase} from "firebase/database"
+//import * as firebase from 'firebase'
+import {initializeApp} from 'firebase/app'
 import {getAuth,
     onAuthStateChanged,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    sendEmailVerification
     } from "firebase/auth"
+import {
+    getDatabase,
+    ref as firebaseDatabaseRef,
+    set as firebaseSet,
+    child,
+    get
+    
+} from "firebase/database"
+
 const  firebaseConfig= {
         apiKey: "AIzaSyB5OeX72YpS_EM-C-DaS01SNRhSUuErl2o",
         authDomain: "reactnative2022-49c5d.firebaseapp.com",
@@ -14,12 +23,18 @@ const  firebaseConfig= {
         appId:"1:672041692015:android:34cf288b305946f3e2169a",
         messagingSenderId: "672041692015",
 }
-const app = inittializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
 const auth = getAuth()
-const firebasedatabase = getDatabase()
+const firebaseDatabase = getDatabase()
 
 export{
     auth,
-    firebasedatabase,
-    createUserWithEmailAndPassword
+    firebaseDatabase,
+    onAuthStateChanged,
+    createUserWithEmailAndPassword,
+    firebaseDatabaseRef,
+    firebaseSet,
+    child,
+    get,
+    sendEmailVerification
 }

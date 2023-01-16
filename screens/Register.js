@@ -29,12 +29,13 @@ function Register(props) {
     const [errorEmail, setErrorEmail] = useState('')
     const [errorPassword, setErrorPassword] = useState('')
     //luu tru email/password
-    const [email, setEmail] = useState('huuthang@gmail.com')
+    const [email, setEmail] = useState('huuang@gmail.com')
     const [password, setPassword] = useState('123456Abc')
     const [retypepassword, setRetypePassword] = useState('123456Abc')
     const isValidationOK = () => email.length > 0 && password.length > 0
         && isValidEmail(email) == true
         && isValidPassword(password) == true
+        && password == retypepassword
     useEffect(() => {
         const xx = auth
         Keyboard.addListener('keyboardDidShow', () => {
@@ -186,7 +187,26 @@ function Register(props) {
                 <TouchableOpacity
                     disabled={isValidationOK() == false}
                     onPress={() => {
-                        navigate('Register')
+                        createUserWithEmailAndPassword(auth,email,password)
+                        .then((userCredential)=>{
+                            const user = userCredential.user
+                            sendEmailVerification(user).then(()=>{
+                                console.log('Email sent')
+                            })
+                            firebaseSet(firebaseDatabaseRef(
+                                firebaseDatabase,
+                                `users/${user.uid}`
+                            ),{
+                                email:user.email,
+                                emailVerified:user.emailVerified,
+                                accessToken:user.accessToken
+                            })             
+                            navigate('UITab')  
+
+                        }).catch((error)=>{
+                            alert(`error: ${error.message}`)
+                        })
+
                     }}
                     style={{
                         backgroundColor: isValidationOK() == true

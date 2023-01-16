@@ -9,6 +9,16 @@ import {
     KeyboardAvoidingView,
     Keyboard
 } from 'react-native'
+import {    
+    onAuthStateChanged,
+    firebaseDatabaseRef,
+    firebaseSet,
+    firebaseDatabase,
+    auth,
+    createUserWithEmailAndPassword,
+    sendEmailVerification,
+    signInWithEmailAndPassword,
+} from '../firebase/firebase'
 import { images, icons, colors, fontSizes } from '../constants/index'
 import { UIButton } from '../components/index'
 import Icon from 'react-native-vector-icons/FontAwesome5'
@@ -141,7 +151,17 @@ function Login(props) {
                 disabled = {isValidationOK() == false}
                 onPress={() => {
                     //navigate('UITab')
-                    alert(`Email = ${email},password=${password}`)
+                    //alert(`Email = ${email},password=${password}`)
+                    signInWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {                        
+                        const user = userCredential.user  
+                       //debugger                      
+                        navigate('UITab')    
+                    }).catch((error) => {
+                        //debugger
+                        alert(`Cannot signin, error: ${error.message}`)
+                    })
+
                 }}
                 style={{
                     backgroundColor: isValidationOK() == true

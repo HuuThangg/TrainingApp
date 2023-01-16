@@ -15,11 +15,13 @@ import { images, icons, colors, fontSizes } from '../../constants/index'
 import { UIButton, UIHeader } from '../../components/index'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import SettingItem from './SettingItem';
+import {auth,firebaseDatabase,firebaseDatabaseRef} from '../../firebase/firebase'
+import {StackActions} from '@react-navigation/native'
 
 function Setting(props) {
     const{navigation,route}=props
     const{navigate,goBack}=navigation
-    const { onPress} = props
+    //const { onPress} = props
     /*
     const [isEnabledLockApp,setisEnabledLockApp]=useState(true)
     const [isUseFingerprint,setisUseFingerprint]=useState(false)
@@ -332,6 +334,9 @@ function Setting(props) {
                     marginHorizontal: 20,
                     marginTop: 20
                 }}>
+                    <TouchableOpacity onPress={()=>{
+                        navigate('CapNhatThongTin',{name:'CapNhatThongTin'})
+                    }}>
                     <Text style={{
                         color: 'white',
                         fontSize: fontSizes.h4,
@@ -341,6 +346,7 @@ function Setting(props) {
                         color: 'white',
                         fontSize: fontSizes.h4
                     }}>0378483232</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -368,7 +374,14 @@ function Setting(props) {
                 <SettingItem title={"Quy trình đặt lịch và khám bệnh"} iconleft={"exclamation"} iconright={"chevron-right"} />
                 <SettingItem title={"Chia sẻ ứng dụng"} iconleft={"share"} />
                 <SettingItem title={"Hotline 1900 2855"} iconleft={"headset"} />
-                <SettingItem title={"Đăng xuất"} iconleft={"sign-out-alt"} />
+                <TouchableOpacity  onPress={()=>{
+                    auth.signOut()
+                    navigation.dispatch(StackActions.popToTop())
+                }}>
+                <SettingItem 
+                title={"Đăng xuất"} 
+                iconleft={"sign-out-alt"} />
+                </TouchableOpacity>
             </View>
         </ScrollView>
     </View>

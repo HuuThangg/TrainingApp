@@ -3,9 +3,34 @@ import { Text, View, Image, ImageBackground, TouchableOpacity } from 'react-nati
 import { sum2Number, substract2Number, PI } from '../utilites/Culculation'
 import { images, icons, colors,fontSizes } from '../constants/index'
 import { UIButton } from '../components/index'
+import {
+    auth,
+    onAuthStateChanged,
+    firebaseDatabaseRef,
+    firebaseSet,
+    firebaseDatabase
+} from '../firebase/firebase'
 
 //thu tu chay const => let => var
 function Welcome(props) {
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+           //debugger
+            if(user) {                                
+                //save data to Firebase                
+                const userId = user.uid
+                firebaseSet(firebaseDatabaseRef(
+                    firebaseDatabase,
+                    `users/${userId}`
+                ),{
+                    email:user.email,
+                    emailVerified:user.emailVerified,
+                    accessToken:user.accessToken
+                })             
+                navigate('UITab')                
+            } 
+        })
+    })
 
     const [accountTypes, setAccountTypes] = useState([
         {
@@ -124,7 +149,7 @@ function Welcome(props) {
                 <TouchableOpacity 
                 onPress={()=>{
                     //alert('Hello press')
-                    navigate('Register',{name:"Register"})
+                    navigate('Register')
                 }}
                 style={{
                     padding:5,
@@ -140,25 +165,5 @@ function Welcome(props) {
         </ImageBackground>
     </View>
 }
-/*
-const WellcomeScreen = (props)=>{
-    const {x,y}=props
-    const {person} = props
-    const{name,age,mail}=person
-    const {product}=props
-    return <View >
-        <Text>x={x},y={y}</Text>
-        <Text>name={name},age={age},email={mail}</Text>
-        {product.map(eachProduct =>
-            <Text>{eachProduct.productName},{eachProduct.year}</Text>)}
-            <Text>sum 2 and 3 = {sum2Number(2,3)}</Text>
-            <Text>contrac 3 and 2 = {substract2Number(3,2)}</Text>
-            <Text>PI = {PI}</Text>
-    </View>
-}
-*/
 export default Welcome
-// function wellcomeScreen(props){
-//     return <Text>This is main screen</Text>
-// }
 

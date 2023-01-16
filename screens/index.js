@@ -6,7 +6,7 @@ import Setting from "./Settings/Setting";
 import Profile from "./Profile";
 import Chat from "./Chat/Chat";
 import Messenger from "./Messenger/Messenger";
-import MatKhauBaoMat from "./Settings/MatKhauBaoMat";
+import {CapNhatThongTin,MatKhauBaoMat} from './Settings'
 import Register from "./Register";
 export{
     Welcome,
@@ -18,5 +18,6 @@ export{
     Chat,
     Messenger,
     MatKhauBaoMat,
+    CapNhatThongTin,
     Register
 }
